@@ -1,18 +1,19 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.modelo.Ciudadano;
-import com.example.demo.modelo.Empleado;
+import com.example.demo.modelo.Habitacion;
+import com.example.demo.modelo.Hotel;
 import com.example.demo.service.ICiudadanoService;
 import com.example.demo.service.IEmpleadoService;
 import com.example.demo.service.IEstudianteService;
+import com.example.demo.service.IHotelService;
 
 @SpringBootApplication
 public class ProyectoPaU2Db1Application implements CommandLineRunner {
@@ -29,33 +30,66 @@ public class ProyectoPaU2Db1Application implements CommandLineRunner {
 	
 	@Autowired
 	private ICiudadanoService ciudadanoService;
+	
+	@Autowired
+	private IHotelService hotelService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-
-		Ciudadano ciu = new  Ciudadano();
-		ciu.setNombre("David");
-		ciu.setApellido("Boada");
-		//this.ciudadanoService.ingresar(ciu);
+		// CREACION DE HOTEL
+		Hotel hotel = new Hotel();
 		
-		Empleado empl = new Empleado();
-		empl.setSalario(new BigDecimal(20));
-		empl.setFechaIngreso(LocalDateTime.now());
-		empl.setCiudadano(ciu);
-		this.empleadoService.ingresar(empl);
-		
-		Ciudadano ciu2 = new  Ciudadano();
-		ciu2.setNombre("Marlon");
-		ciu2.setApellido("Boada");
-		this.ciudadanoService.ingresar(ciu2);
+		hotel.setDireccion("San Diego");
+		hotel.setNombre("El Mirados de San Diego");
 		
 		
-		Empleado empl2 = new Empleado();
-		empl2.setSalario(new BigDecimal(50));
-		empl2.setFechaIngreso(LocalDateTime.now());
-		this.empleadoService.ingresar(empl2);
+		//CREACION DE HABITACIONES
+		Habitacion habitacion1 = new Habitacion();
+		habitacion1.setNumero("01");
+		habitacion1.setHotel(hotel);
+		
+		Habitacion habitacion2 = new Habitacion();
+		habitacion2.setNumero("02");
+		habitacion2.setHotel(hotel);
+		
+		Habitacion habitacion3 = new Habitacion();
+		habitacion3.setNumero("03");
+		habitacion3.setHotel(hotel);
+		
+		Habitacion habitacion4 = new Habitacion();
+		habitacion4.setNumero("04");
+		habitacion4.setHotel(hotel);
+		
+		List<Habitacion> lista = new ArrayList<>();
+		
+		lista.add(habitacion1);
+		lista.add(habitacion2);
+		lista.add(habitacion3);
+		lista.add(habitacion4);
+		
+		hotel.setHabitaciones(lista);
+		
+		//this.hotelService.crear(hotel);
+		
+		
+		//actualizacion de hotel Y HABITACION NUEVA
+		hotel.setNombre("El Mirador");
+		
+		Habitacion habitacion5 = new Habitacion();
+		habitacion5.setNumero("05");
+		habitacion5.setHotel(hotel);
+		lista.add(habitacion5);
+		
+		
+		//this.hotelService.actualizar(hotel);
+		
+		//ELIMINACION DE HOTEL
+		this.hotelService.eliminar(3);
+		
+		
+		
 		
 		
 	}
