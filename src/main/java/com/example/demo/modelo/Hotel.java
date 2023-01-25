@@ -5,12 +5,15 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+
+
 
 @Entity
 @Table(name = "hotel")
@@ -26,7 +29,7 @@ public class Hotel {
 	@Column(name = "hote_direccion")
 	private String direccion;
 
-	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "hotel")
 	private List<Habitacion> habitaciones;
 
 	// GETTER & SETTER

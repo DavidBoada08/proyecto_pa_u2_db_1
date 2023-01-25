@@ -32,7 +32,7 @@ public class HotelServiceImpl implements IHotelService {
 	@Override
 	public Hotel buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.hotelRepo.buscar(id);
+			return this.hotelRepo.buscar(id);
 	}
 
 	@Override
