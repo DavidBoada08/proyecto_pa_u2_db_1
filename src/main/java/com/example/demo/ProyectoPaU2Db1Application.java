@@ -48,6 +48,8 @@ public class ProyectoPaU2Db1Application implements CommandLineRunner {
 				this.iVehiculoService.insertar(vehi);				
 				
 				//2. Actualizar dos atributos del vehículo creado en el punto 1.
+				
+				
 				vehi.setMarca("AUDI");
 				vehi.setPrecio(new BigDecimal(3000));
 				this.iVehiculoService.actualizarVhiculo(vehi);
